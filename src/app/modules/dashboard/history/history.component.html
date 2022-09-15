@@ -1,0 +1,42 @@
+<mat-card>
+  <mat-card-title class="text-center">
+    Historical data by country
+  </mat-card-title>
+  <mat-card-content>
+    <mat-form-field
+      class="w-full"
+      appearance="fill"
+    >
+      <mat-label>
+        Select country
+      </mat-label>
+      <mat-select
+        [formControl]="country"
+        (selectionChange)="onSelectChanged($event)"
+        [disabled]="isLoading"
+      >
+        <mat-option
+          *ngFor="let country of countries"
+          [value]="country"
+        >
+          {{country}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div
+      *ngIf="isLoading"
+      class="flex justify-center"
+    >
+      <mat-progress-spinner
+        color="primary"
+        mode="indeterminate"
+      ></mat-progress-spinner>
+    </div>
+
+    <ng-container
+      *ngIf="dates && values && !isLoading"
+    >
+      <app-chart [data]="values" [labels]="dates"></app-chart>
+    </ng-container>
+  </mat-card-content>
+</mat-card>

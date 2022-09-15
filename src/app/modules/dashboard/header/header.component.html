@@ -1,0 +1,15 @@
+<mat-toolbar class="bg-indigo-800 h-28">
+  <div class="text-white">
+    <a class="mr-5" routerLink="cases" routerLinkActive="text-amber-400">Cases</a>
+    <a routerLink="history" routerLinkActive="text-amber-400">History</a>
+  </div>
+  <div *ngIf="user" class="ml-auto">
+    <button mat-button [matMenuTriggerFor]="menu">
+      <img class="rounded-full w-16" [src]="user.avatar_url" alt="">
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Hello {{user.login}}</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
